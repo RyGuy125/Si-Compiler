@@ -105,18 +105,18 @@ falsx     {adjust(); return FALSX;}
 <ERROR_HANDLE>[ \t] { 
                         adjust(); 
                         yytext[--yyleng] = '\0';
-                        fprintf(stderr,"unrecognized token %s",yytext);
+                        EM_error(EM_tokPos, "unrecognized token: %s", yytext);
                         BEGIN INITIAL;
                       }
 <ERROR_HANDLE>\n {
                     adjust();
                     EM_newline();
                     yytext[--yyleng] = '\0';
-                    fprintf(stderr,"unrecognized token %s\n",yytext);
+                    EM_error(EM_tokPos, "unrecognized token: %s", yytext);
                     BEGIN INITIAL;
                  }
 <ERROR_HANDLE><<EOF>> {
-                        fprintf(stderr,"unrecognized token before EOF\n");
+                        EM_error(EM_tokPos, "unrecognized token before EOF");
                         yyterminate();
                       }
 <ERROR_HANDLE>.  { adjust(); yymore();}

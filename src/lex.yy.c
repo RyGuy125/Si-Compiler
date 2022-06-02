@@ -1273,7 +1273,7 @@ YY_RULE_SETUP
 { 
                         adjust(); 
                         yytext[--yyleng] = '\0';
-                        fprintf(stderr,"unrecognized token %s",yytext);
+                        EM_error(EM_tokPos, "unrecognized token: %s", yytext);
                         BEGIN INITIAL;
                       }
 	YY_BREAK
@@ -1285,14 +1285,14 @@ YY_RULE_SETUP
                     adjust();
                     EM_newline();
                     yytext[--yyleng] = '\0';
-                    fprintf(stderr,"unrecognized token %s\n",yytext);
+                    EM_error(EM_tokPos, "unrecognized token: %s", yytext);
                     BEGIN INITIAL;
                  }
 	YY_BREAK
 case YY_STATE_EOF(ERROR_HANDLE):
 #line 118 "si.lex"
 {
-                        fprintf(stderr,"unrecognized token before EOF\n");
+                        EM_error(EM_tokPos, "unrecognized token before EOF");
                         yyterminate();
                       }
 	YY_BREAK
