@@ -20,4 +20,4 @@ util.o: util.c util.h
 	${CC} ${CFLAGS} -c util.c
 
 clean: 
-	rm -f lextest *.o lex.yy.c
+	rm -f *.o lex.yy.c
